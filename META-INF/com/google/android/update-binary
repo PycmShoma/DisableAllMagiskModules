@@ -1,0 +1,16 @@
+#!/sbin/sh
+#
+FD=$2
+ui_print() {
+  echo -n -e "ui_print $1\n" > /proc/self/fd/$FD
+  echo -n -e "ui_print\n" > /proc/self/fd/$FD
+}
+#
+ui_print " "
+sleep 1
+ui_print "Find all installing Magisk module ..."
+find /data/adb/modules/* -type f -name module.prop -maxdepth 2 -execdir touch disable {} \;
+ui_print " "
+sleep 1
+ui_print "... and disable this"
+ui_print " "
